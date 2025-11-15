@@ -211,7 +211,7 @@ export default function Home() {
                 {getGameTypeName(gameState.stageType)}
               </h2>
               <p className="text-sm text-gray-600 mb-8">
-                Màn {gameState.playedTypes.length} / 17
+                Màn {gameState.playedTypes.length}
               </p>
               
               {/* Position Memory - Grid */}
@@ -409,7 +409,7 @@ export default function Home() {
                 {getGameTypeName(gameState.stageType)}
               </h2>
               <p className="text-sm text-gray-600 mb-4">
-                Màn {gameState.playedTypes.length} / 17
+                Màn {gameState.playedTypes.length}
               </p>
               <p className="text-2xl font-semibold mb-8 text-gray-700">
                 {gameState.questionData.questionText}
