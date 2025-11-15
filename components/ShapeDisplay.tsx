@@ -50,8 +50,8 @@ export default function ShapeDisplay({ shape, color, size = 120, animated = true
             <div
                 className="rotate-45"
                 style={{
-                    width: size,
-                    height: size,
+                    width: size * 0.4,
+                    height: size * 0.4,
                     backgroundColor: colorValue,
                 }}
             />

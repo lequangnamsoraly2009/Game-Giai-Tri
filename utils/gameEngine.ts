@@ -134,7 +134,7 @@ export function createInitialState(): GameState {
     score: 0,
     stageType: 'shape-color',
     stageConfig: {
-      displayTime: 3000,
+      displayTime: 6000,
       numOptions: 3,
       numShapes: 1,
       numTexts: 3,
@@ -501,28 +501,7 @@ export function generateGameDisplay(stageType: StageType): { displayData: GameSt
     displayData.rightTexts = rightTexts;
   }
   
-  // 5. Distraction Test - 1 hình chính + nhiều hình nhiễu
-  if (stageType === 'distraction-test') {
-    const mainShape: ShapeDisplay = {
-      shape: getRandomShape(),
-      color: getRandomColor(),
-      position: 'center',
-    };
-    
-    const distractionShapes: ShapeDisplay[] = [];
-    for (let i = 0; i < 5; i++) {
-      distractionShapes.push({
-        shape: getRandomShape(),
-        color: getRandomColor(),
-        position: Math.random() < 0.5 ? 'left' : 'right',
-      });
-    }
-    
-    displayData.mainShape = mainShape;
-    displayData.distractionShapes = distractionShapes;
-  }
-  
-  // 6. Flash Memory - Hình nhấp nháy 3 lần với 3 màu
+  // 5. Flash Memory - Hình nhấp nháy 3 lần với 3 màu
   if (stageType === 'flash-memory') {
     const flashSequence: Color[] = [];
     const usedColors: Color[] = [];
@@ -1256,32 +1235,7 @@ export function generateQuestion(displayData: GameState['displayData'], stageCon
     }
   }
   
-  // 5. Distraction Test
-  if (stageType === 'distraction-test' && displayData.mainShape) {
-    const questionTypes = ['main-color', 'main-position'];
-    const randomType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-    
-    if (randomType === 'main-color') {
-      const correctColor = displayData.mainShape.color;
-      const options = generateColorOptions(correctColor, stageConfig.numOptions);
-      questionData.correctAnswer = correctColor;
-      questionData.options = options;
-      questionData.questionText = 'Màu của hình chính là gì?';
-      return questionData;
-    } else {
-      const position = displayData.mainShape.position || 'center';
-      const positionOptions: Array<'left' | 'center' | 'right'> = ['left', 'center', 'right'];
-      const correctPosition = typeof position === 'string' ? position : 'center';
-      const options = positionOptions.filter(p => p !== correctPosition);
-      options.push(correctPosition);
-      questionData.correctAnswer = correctPosition;
-      questionData.options = options.sort(() => Math.random() - 0.5);
-      questionData.questionText = 'Hình chính nằm vị trí nào?';
-      return questionData;
-    }
-  }
-  
-  // 6. Flash Memory
+  // 5. Flash Memory
   if (stageType === 'flash-memory' && displayData.flashSequence) {
     const questionTypes = ['flash-color', 'flash-exists'];
     const randomType = questionTypes[Math.floor(Math.random() * questionTypes.length)];

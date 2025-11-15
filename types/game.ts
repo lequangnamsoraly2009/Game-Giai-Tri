@@ -28,7 +28,7 @@ export interface StroopDisplay {
 
 export type StageType = 
   | 'shape-color' | 'stroop' | 'multi-shape' | 'color-sequence' | 'mixed' | 'animated-shapes'
-  | 'position-memory' | 'speed-reading' | 'shape-counting' | 'color-match' | 'distraction-test' | 'flash-memory'
+  | 'position-memory' | 'speed-reading' | 'shape-counting' | 'color-match' | 'flash-memory'
   | 'increasing-sequence' | 'partial-shapes' | 'overlapping-chaos' | 'path-tracking' | 'stroop-hard' | 'wrong-color-mix';
 
 export type GameStage = 'menu' | 'display' | 'question' | 'game-over' | 'victory';

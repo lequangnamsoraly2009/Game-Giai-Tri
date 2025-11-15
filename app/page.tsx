@@ -211,7 +211,7 @@ export default function Home() {
                 {getGameTypeName(gameState.stageType)}
               </h2>
               <p className="text-sm text-gray-600 mb-8">
-                Màn {gameState.playedTypes.length} / 18
+                Màn {gameState.playedTypes.length} / 17
               </p>
               
               {/* Position Memory - Grid */}
@@ -409,7 +409,7 @@ export default function Home() {
                 {getGameTypeName(gameState.stageType)}
               </h2>
               <p className="text-sm text-gray-600 mb-4">
-                Màn {gameState.playedTypes.length} / 18
+                Màn {gameState.playedTypes.length} / 17
               </p>
               <p className="text-2xl font-semibold mb-8 text-gray-700">
                 {gameState.questionData.questionText}
@@ -510,7 +510,7 @@ export default function Home() {
               <h2 className="text-5xl font-bold mb-4 text-red-600">Game Over!</h2>
               <p className="text-2xl text-gray-700 mb-2">Bạn đã trả lời sai 😢</p>
               <p className="text-lg text-gray-600 mb-2">
-                Bạn đã hoàn thành {gameState.playedTypes.length - 1} / 18 loại game
+                Bạn đã hoàn thành {gameState.playedTypes.length - 1} / 17 loại game
               </p>
               <p className="text-lg text-gray-600 mb-8">
                 Tổng điểm: {gameState.score.toLocaleString('vi-VN')}

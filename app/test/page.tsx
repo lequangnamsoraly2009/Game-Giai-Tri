@@ -297,31 +297,6 @@ export default function TestPage() {
                   </div>
                 )}
 
-                {/* Distraction Test */}
-                {gameState.stageType === 'distraction-test' && gameState.displayData.mainShape && (
-                  <div className="relative">
-                    <div className="flex justify-center">
-                      <ShapeDisplayComponent
-                        shape={gameState.displayData.mainShape.shape}
-                        color={gameState.displayData.mainShape.color}
-                        size={150}
-                      />
-                    </div>
-                    {gameState.displayData.distractionShapes && (
-                      <div className="flex justify-center gap-4 mt-4">
-                        {gameState.displayData.distractionShapes.map((shape, index) => (
-                          <ShapeDisplayComponent
-                            key={index}
-                            shape={shape.shape}
-                            color={shape.color}
-                            size={60}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-
                 {/* Flash Memory */}
                 {gameState.stageType === 'flash-memory' && gameState.displayData.flashSequence && gameState.displayData.shapes && (
                   <FlashMemoryDisplay
@@ -342,7 +317,7 @@ export default function TestPage() {
 
                 {/* Standard shapes display */}
                 {gameState.displayData.shapes && 
-                 !['position-memory', 'speed-reading', 'shape-counting', 'color-match', 'distraction-test', 'flash-memory', 'wrong-color-mix'].includes(gameState.stageType) && (
+                 !['position-memory', 'speed-reading', 'shape-counting', 'color-match', 'flash-memory', 'wrong-color-mix'].includes(gameState.stageType) && (
                   <div className="flex justify-center gap-4 flex-wrap">
                     {gameState.displayData.shapes.map((shape, index) => (
                       <ShapeDisplayComponent
