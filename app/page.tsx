@@ -281,12 +281,37 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Hiển thị shapes tĩnh (không phải animated, mixed, position-memory, path-tracking, và wrong-color-mix) */}
+              {/* Shape Counting - Đếm nhanh với số thứ tự */}
+              {gameState.stageType === 'shape-counting' && gameState.displayData.shapes && gameState.displayData.shapes.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-6 mb-8">
+                  {gameState.displayData.shapes.map((shape, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ y: -100, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      className="relative"
+                    >
+                      <ShapeDisplayComponent
+                        shape={shape.shape}
+                        color={shape.color}
+                        size={150}
+                      />
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-white border-2 border-gray-800 rounded-full flex items-center justify-center font-bold text-sm text-gray-800 shadow-lg">
+                        {index + 1}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Hiển thị shapes tĩnh (không phải animated, mixed, position-memory, path-tracking, wrong-color-mix, và shape-counting) */}
               {gameState.stageType !== 'animated-shapes' && 
                gameState.stageType !== 'mixed' && 
                gameState.stageType !== 'position-memory' &&
                gameState.stageType !== 'path-tracking' &&
                gameState.stageType !== 'wrong-color-mix' &&
+               gameState.stageType !== 'shape-counting' &&
                gameState.displayData.shapes && 
                gameState.displayData.shapes.length > 0 && (
                 <div className="flex flex-wrap justify-center gap-6 mb-8">
@@ -376,8 +401,32 @@ export default function Home() {
                  </div>
                )}
 
-              {/* Hiển thị sequence */}
-              {gameState.displayData.sequence && gameState.displayData.sequence.length > 0 && (
+              {/* Color Sequence - Dãy màu sắc với số thứ tự */}
+              {gameState.stageType === 'color-sequence' && gameState.displayData.sequence && gameState.displayData.sequence.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  {gameState.displayData.sequence.map((color, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.15 }}
+                      className="relative"
+                    >
+                      <div
+                        className="w-20 h-20 rounded-full"
+                        style={{ backgroundColor: COLORS[color] }}
+                      />
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-white border-2 border-gray-800 rounded-full flex items-center justify-center font-bold text-sm text-gray-800 shadow-lg">
+                        {index + 1}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Hiển thị sequence (không phải color-sequence) */}
+              {gameState.stageType !== 'color-sequence' &&
+               gameState.displayData.sequence && gameState.displayData.sequence.length > 0 && (
                 <div className="flex flex-wrap justify-center gap-4 mb-8">
                   {gameState.displayData.sequence.map((color, index) => (
                     <motion.div
@@ -386,7 +435,7 @@ export default function Home() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.15 }}
                       className="w-20 h-20 rounded-full"
-                      style={{ backgroundColor: color }}
+                      style={{ backgroundColor: COLORS[color] }}
                     />
                   ))}
                 </div>
